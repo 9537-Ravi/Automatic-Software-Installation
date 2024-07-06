@@ -4,8 +4,8 @@
 show_menu() {
     clear
     echo "***********************************************************"
-    echo "*** ASI - Automatic Software Installation ***"
-    echo "*** Developed By Ravindra Thakar - DELHIVERY ***"
+    echo "*** ASI - Automatic Software Installation                 *"             
+    echo "*** Developed By Ravindra Thakar - DELHIVERY              *"          
     echo "***********************************************************"
     echo "*** NOTE: To stop/exit software -> press ctrl + c / ctrl + z ***"
     echo "***********************************************************"

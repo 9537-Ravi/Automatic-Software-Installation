@@ -1,4 +1,5 @@
 #!/bin/bash
+
 # Function to display the main menu
 show_menu() {
     clear
@@ -10,7 +11,7 @@ show_menu() {
     echo "***********************************************************"
     echo "MAIN MENU"
     echo "0. Forticlient VPN"
-    echo "00. CIP Installation"
+	echo "00. CIP Installation"
     echo "1. Delhivery Roboscan"
     echo "2. IT Audit"
     echo "3. Rename the Hostname"
@@ -52,7 +53,154 @@ handle_choice() {
 			
 			00) echo "CIP Installation"
              #Cip Installation Start
-             sudo rm -rf dsiw && sudo wget https://raw.githubusercontent.com/ssn031737/dsiw/main/dsiw/dsiw && sudo chmod +x dsiw && sudo ./dsiw
+             #!/bin/bash
+apt-get update
+ 
+apt-get install sssd sssd-tools -y
+cd /home/administrator/Desktop/Linux
+ls -lrth
+cp -rp Google_2026_05_22_46666* /var/
+chmod 777 /var/Google_2026_05_22_46666*
+cat /home/administrator/Desktop/Linux/sssd_conf.txt > /etc/sssd/sssd.conf
+chown root:root /etc/sssd/sssd.conf 
+chmod 600 /etc/sssd/sssd.conf 
+service sssd restart 
+cat /home/administrator/Desktop/Linux/custom_conf.txt > /etc/gdm3/custom.conf
+echo "deb https://packages.cloud.google.com/apt endpoint-verification main" | sudo tee -a /etc/apt/sources.list.d/endpoint-verification.list
+
+apt install curl -y
+
+curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
+
+apt-get update
+
+apt-get install endpoint-verification -y
+
+getent passwd
+ sudo service sssd status | grep Active:
+ pam-auth-update
+getent passwd
+sudo apt update -y
+sudo apt install -y sssd-tools
+sudo gedit/etc/sssd/sssd.conf
+#if the Fiel open Balnk so copy bellow Fiel
+#[sssd]
+services = nss, pam
+domains = delhivery.com
+[domain/delhivery.com]
+ignore_group_members = true
+sudo_provider = none
+cache_credentials = true
+ldap_tls_cert = /var/Google_2026_05_22_46666.crt
+ldap_tls_key = /var/Google_2026_05_22_46666.key
+ldap_uri = ldaps://ldap.google.com:636
+ldap_search_base = dc=delhivery,dc=com
+id_provider = ldap
+auth_provider = ldap
+ldap_schema = rfc2307bis
+ldap_user_uuid = entryUUID
+ldap_groups_use_matching_rule_in_chain = true
+ldap_initgroups_use_matching_rule_in_chain = true
+enumerate = false
+
+sudo chown root:root /etc/sssd/sssd.conf
+sudo chmod 600 /etc/sssd/sssd.conf
+sudo service sssd restart
+sudo service sssd status | grep Active:
+gedit /etc/gdm3/custom.conf
+#if the Fiel open Balnk so copy bellow Fiel
+# GDM configuration storage
+#
+# See /usr/share/gdm/gdm.schemas for a list of available options.
+ 
+[daemon]
+# Uncomment the line below to force the login screen to use Xorg
+WaylandEnable=true
+
+# Enabling automatic login
+#  AutomaticLoginEnable = true
+#  AutomaticLogin = user1
+ 
+# Enabling timed login
+#  TimedLoginEnable = true
+#  TimedLogin = user1
+#  TimedLoginDelay = 10
+ 
+[security]
+ 
+[xdmcp]
+ 
+[chooser]
+ 
+[debug]
+# Uncomment the line below to turn on debugging
+# More verbose logs
+# Additionally lets the X server dump core if it crashes
+#Enable=true
+
+getent passwd
+pam-auth-update
+getent passwd
+sudo apt update -y
+sudo apt install -y sssd-tools
+sudo gedit /etc/sssd/sssd.conf
+#if the Fiel open Balnk so copy bellow Fiel
+#[sssd]
+services = nss, pam
+domains = delhivery.com
+[domain/delhivery.com]
+ignore_group_members = true
+sudo_provider = none
+cache_credentials = true
+ldap_tls_cert = /var/Google_2026_05_22_46666.crt
+ldap_tls_key = /var/Google_2026_05_22_46666.key
+ldap_uri = ldaps://ldap.google.com:636
+ldap_search_base = dc=delhivery,dc=com
+id_provider = ldap
+auth_provider = ldap
+ldap_schema = rfc2307bis
+ldap_user_uuid = entryUUID
+ldap_groups_use_matching_rule_in_chain = true
+ldap_initgroups_use_matching_rule_in_chain = true
+enumerate = false
+
+sudo chown root:root /etc/sssd/sssd.conf
+sudo chmod 600 /etc/sssd/sssd.conf
+sudo service sssd restart
+sudo service sssd status | grep Active:
+gedit /etc/gdm3/custom.conf
+#if the Fiel open Balnk so copy bellow Fiel
+# GDM configuration storage
+#
+# See /usr/share/gdm/gdm.schemas for a list of available options.
+ 
+[daemon]
+# Uncomment the line below to force the login screen to use Xorg
+WaylandEnable=true
+
+# Enabling automatic login
+#  AutomaticLoginEnable = true
+#  AutomaticLogin = user1
+ 
+# Enabling timed login
+#  TimedLoginEnable = true
+#  TimedLogin = user1
+#  TimedLoginDelay = 10
+ 
+[security]
+ 
+[xdmcp]
+ 
+[chooser]
+ 
+[debug]
+# Uncomment the line below to turn on debugging
+# More verbose logs
+# Additionally lets the X server dump core if it crashes
+#Enable=true
+
+getent passwd
+ 
 ;;
        1)
             echo "Running Delhivery Roboscan..."
@@ -72,30 +220,13 @@ sudo dmidecode -t system
 echo
 
 echo "***** MANAGE ENGINE SERVICE STATUS *****"
-download_and_setup_ME() {
-    echo "Downloading required files..."
-    wget -O "$TARGET_DIR/DMRootCA.crt" "$DMRootCA_URL"
-    wget -O "$TARGET_DIR/serverinfo.json" "$json_URL"
-    wget -O "$TARGET_DIR/UEMS_LinuxAgent.bin" "$UEMS_URL"
-
-	
-    echo "Setting execution permissions..."
-    sudo chmod +x "/home/administrator/Downloads/UEMS_LinuxAgent.bin"
-
-    echo "Running the installer..."
-	cd $TARGET_DIR
-    sudo ./UEMS_LinuxAgent.bin
-}
-
-# Check the status of the dcservice
-if systemctl status dcservice | grep -q "active"; then
-    echo "dcservice is active. ME is already installed."
-	echo
+if systemctl is-active --quiet dsservice.service; then
+    echo "dsservice.service is active."
 else
-    echo "dcservice is not active. Installing ME..."
-	echo
-    download_and_setup_ME
+    echo "Unit dsservice.service could not be found."
 fi
+echo
+
 echo "***** NO ANTIVIRUS INSTALLED *****"
 
 echo -n "Do you wish to install Antivirus? Yes(y)/ No(n): "
@@ -111,7 +242,8 @@ if [[ "$install_antivirus" == "y" || "$install_antivirus" == "Y" ]]; then
 else
     echo "Thank you. You are exit from task. To secure your system, please install antivirus software."
 fi
-;;
+
+            ;;
         2)
             echo "Performing IT Audit..."
             # Add commands to perform IT audit
@@ -139,9 +271,9 @@ download_and_install() {
 	wget -q https://delhiverysoft.000webhostapp.com/google-chrome-stable_current_amd64.deb --show-progress
 	wget -q https://delhiverysoft.000webhostapp.com/anydesk_6.3.2-1_amd64.deb --show-progress
 	wget -q https://delhiverysoft.000webhostapp.com/UEMS_LinuxAgent.bin
+    # Add additional wget commands for other software here
     echo "Installation complete."
 }
-
 # User prompt with timeout
 echo "Please enter your choice :"
 read choice
@@ -177,7 +309,8 @@ else
     echo "Invalid choice. Exiting..."
     exit 1
 fi
-;;
+
+            ;;
         5)
             echo "Installing All Software (Online)..."
             
@@ -238,17 +371,14 @@ while true; do
         1)
             echo "TSC/Zenpert Barcode Printer Driver Installation"
             # Add your installation command here
-            wget -q https://1024terabox.com/s/1_a3GKAh1a80tOVTXj1SE6w
             ;;
         2)
             echo "TSC/Zenpert Barcode Printer Driver Reinstallation"
             # Add your reinstallation command here
-            wget -q https://1024terabox.com/s/1_a3GKAh1a80tOVTXj1SE6w
             ;;
         3)
             echo "TSC/Zenpert Barcode Printer Driver Uninstallation"
             # Add your uninstallation command here
-            wget -q https://1024terabox.com/s/1AgAxxCWHLsQydR0VgCZv2Q
             ;;
         4)
             echo "HP Laserjet Pro M1136 Printer Driver Installation Please Wait...!"
@@ -259,7 +389,6 @@ while true; do
         5)
             echo "HP Laserjet Pro M1136 Printer Driver Reinstallation"
             # Add your reinstallation command here
-            hp-plugin
             ;;
         6)
             echo "HP Laserjet Pro M1136 Printer Driver - Troubleshoot 1"
@@ -277,7 +406,6 @@ while true; do
         9)
             echo "HP Laserjet Pro M1136 Printer Driver Uninstallation"
             # Add your uninstallation command here
-			sudo apt purge hplip
             ;;
         10)
             echo "HP Network Printer"

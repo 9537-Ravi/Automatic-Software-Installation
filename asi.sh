@@ -312,11 +312,11 @@ while true; do
             # Add your command to check HP printer driver information here
             ;;
         18)
-            echo "Back to home"
+           # echo "Back to home"
             break
             ;;
         *)
-            echo "Invalid option. Please try again."
+           # echo "Invalid option. Please try again."
             ;;
     esac
 done

@@ -274,6 +274,7 @@ download_and_install() {
     # Add additional wget commands for other software here
     echo "Installation complete."
 }
+
 # User prompt with timeout
 echo "Please enter your choice :"
 read choice

@@ -111,8 +111,7 @@ if [[ "$install_antivirus" == "y" || "$install_antivirus" == "Y" ]]; then
 else
     echo "Thank you. You are exit from task. To secure your system, please install antivirus software."
 fi
-
-            ;;
+;;
         2)
             echo "Performing IT Audit..."
             # Add commands to perform IT audit

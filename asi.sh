@@ -316,7 +316,6 @@ fi
             echo "Invalid option. Please try again."
             ;;
     esac
-done
 
             
             ;;

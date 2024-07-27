@@ -10,7 +10,7 @@ show_menu() {
     echo "***********************************************************"
     echo "MAIN MENU"
     echo "0. Forticlient VPN"
-	echo "00. CIP Installation"
+    echo "00. CIP Installation"
     echo "1. Delhivery Roboscan"
     echo "2. IT Audit"
     echo "3. Rename the Hostname"
@@ -312,11 +312,11 @@ while true; do
             # Add your command to check HP printer driver information here
             ;;
         18)
-           # echo "Back to home"
+            echo "Back to home"
             break
             ;;
         *)
-           # echo "Invalid option. Please try again."
+            echo "Invalid option. Please try again."
             ;;
     esac
 done

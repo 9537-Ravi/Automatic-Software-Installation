@@ -177,8 +177,7 @@ else
     echo "Invalid choice. Exiting..."
     exit 1
 fi
-
-            ;;
+;;
         5)
             echo "Installing All Software (Online)..."
             

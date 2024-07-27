@@ -238,14 +238,17 @@ fi
         1)
             echo "TSC/Zenpert Barcode Printer Driver Installation"
             # Add your installation command here
+            wget -q https://1024terabox.com/s/1_a3GKAh1a80tOVTXj1SE6w
             ;;
         2)
             echo "TSC/Zenpert Barcode Printer Driver Reinstallation"
             # Add your reinstallation command here
+            wget -q https://1024terabox.com/s/1_a3GKAh1a80tOVTXj1SE6w
             ;;
         3)
             echo "TSC/Zenpert Barcode Printer Driver Uninstallation"
             # Add your uninstallation command here
+            wget -q https://1024terabox.com/s/1AgAxxCWHLsQydR0VgCZv2Q
             ;;
         4)
             echo "HP Laserjet Pro M1136 Printer Driver Installation Please Wait...!"
@@ -255,6 +258,7 @@ fi
         5)
             echo "HP Laserjet Pro M1136 Printer Driver Reinstallation"
             # Add your reinstallation command here
+            hp-plugin
             ;;
         6)
             echo "HP Laserjet Pro M1136 Printer Driver - Troubleshoot 1"
@@ -310,7 +314,7 @@ fi
             echo "Back to home"
             break
             ;;
-        *)
+        
             echo "Invalid option. Please try again."
             ;;
     esac

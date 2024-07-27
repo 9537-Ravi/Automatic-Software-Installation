@@ -314,7 +314,7 @@ fi
             echo "Back to home"
             break
             ;;
-        
+        *)
             echo "Invalid option. Please try again."
             ;;
     esac

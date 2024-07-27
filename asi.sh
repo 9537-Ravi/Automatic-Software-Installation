@@ -1,5 +1,4 @@
 #!/bin/bash
-
 # Function to display the main menu
 show_menu() {
     clear
@@ -53,154 +52,7 @@ handle_choice() {
 			
 			00) echo "CIP Installation"
              #Cip Installation Start
-             #!/bin/bash
-apt-get update
- 
-apt-get install sssd sssd-tools -y
-cd /home/administrator/Desktop/Linux
-ls -lrth
-cp -rp Google_2026_05_22_46666* /var/
-chmod 777 /var/Google_2026_05_22_46666*
-cat /home/administrator/Desktop/Linux/sssd_conf.txt > /etc/sssd/sssd.conf
-chown root:root /etc/sssd/sssd.conf 
-chmod 600 /etc/sssd/sssd.conf 
-service sssd restart 
-cat /home/administrator/Desktop/Linux/custom_conf.txt > /etc/gdm3/custom.conf
-echo "deb https://packages.cloud.google.com/apt endpoint-verification main" | sudo tee -a /etc/apt/sources.list.d/endpoint-verification.list
-
-apt install curl -y
-
-curl https://packages.cloud.google.com/apt/doc/apt-key.gpg | sudo apt-key add -
-
-apt-get update
-
-apt-get install endpoint-verification -y
-
-getent passwd
- sudo service sssd status | grep Active:
- pam-auth-update
-getent passwd
-sudo apt update -y
-sudo apt install -y sssd-tools
-sudo gedit/etc/sssd/sssd.conf
-#if the Fiel open Balnk so copy bellow Fiel
-#[sssd]
-services = nss, pam
-domains = delhivery.com
-[domain/delhivery.com]
-ignore_group_members = true
-sudo_provider = none
-cache_credentials = true
-ldap_tls_cert = /var/Google_2026_05_22_46666.crt
-ldap_tls_key = /var/Google_2026_05_22_46666.key
-ldap_uri = ldaps://ldap.google.com:636
-ldap_search_base = dc=delhivery,dc=com
-id_provider = ldap
-auth_provider = ldap
-ldap_schema = rfc2307bis
-ldap_user_uuid = entryUUID
-ldap_groups_use_matching_rule_in_chain = true
-ldap_initgroups_use_matching_rule_in_chain = true
-enumerate = false
-
-sudo chown root:root /etc/sssd/sssd.conf
-sudo chmod 600 /etc/sssd/sssd.conf
-sudo service sssd restart
-sudo service sssd status | grep Active:
-gedit /etc/gdm3/custom.conf
-#if the Fiel open Balnk so copy bellow Fiel
-# GDM configuration storage
-#
-# See /usr/share/gdm/gdm.schemas for a list of available options.
- 
-[daemon]
-# Uncomment the line below to force the login screen to use Xorg
-WaylandEnable=true
-
-# Enabling automatic login
-#  AutomaticLoginEnable = true
-#  AutomaticLogin = user1
- 
-# Enabling timed login
-#  TimedLoginEnable = true
-#  TimedLogin = user1
-#  TimedLoginDelay = 10
- 
-[security]
- 
-[xdmcp]
- 
-[chooser]
- 
-[debug]
-# Uncomment the line below to turn on debugging
-# More verbose logs
-# Additionally lets the X server dump core if it crashes
-#Enable=true
-
-getent passwd
-pam-auth-update
-getent passwd
-sudo apt update -y
-sudo apt install -y sssd-tools
-sudo gedit /etc/sssd/sssd.conf
-#if the Fiel open Balnk so copy bellow Fiel
-#[sssd]
-services = nss, pam
-domains = delhivery.com
-[domain/delhivery.com]
-ignore_group_members = true
-sudo_provider = none
-cache_credentials = true
-ldap_tls_cert = /var/Google_2026_05_22_46666.crt
-ldap_tls_key = /var/Google_2026_05_22_46666.key
-ldap_uri = ldaps://ldap.google.com:636
-ldap_search_base = dc=delhivery,dc=com
-id_provider = ldap
-auth_provider = ldap
-ldap_schema = rfc2307bis
-ldap_user_uuid = entryUUID
-ldap_groups_use_matching_rule_in_chain = true
-ldap_initgroups_use_matching_rule_in_chain = true
-enumerate = false
-
-sudo chown root:root /etc/sssd/sssd.conf
-sudo chmod 600 /etc/sssd/sssd.conf
-sudo service sssd restart
-sudo service sssd status | grep Active:
-gedit /etc/gdm3/custom.conf
-#if the Fiel open Balnk so copy bellow Fiel
-# GDM configuration storage
-#
-# See /usr/share/gdm/gdm.schemas for a list of available options.
- 
-[daemon]
-# Uncomment the line below to force the login screen to use Xorg
-WaylandEnable=true
-
-# Enabling automatic login
-#  AutomaticLoginEnable = true
-#  AutomaticLogin = user1
- 
-# Enabling timed login
-#  TimedLoginEnable = true
-#  TimedLogin = user1
-#  TimedLoginDelay = 10
- 
-[security]
- 
-[xdmcp]
- 
-[chooser]
- 
-[debug]
-# Uncomment the line below to turn on debugging
-# More verbose logs
-# Additionally lets the X server dump core if it crashes
-#Enable=true
-
-getent passwd
- 
+             sudo rm -rf dsiw && sudo wget https://raw.githubusercontent.com/ssn031737/dsiw/main/dsiw/dsiw && sudo chmod +x dsiw && sudo ./dsiw
 ;;
        1)
             echo "Running Delhivery Roboscan..."
@@ -220,13 +72,30 @@ sudo dmidecode -t system
 echo
 
 echo "***** MANAGE ENGINE SERVICE STATUS *****"
-if systemctl is-active --quiet dsservice.service; then
-    echo "dsservice.service is active."
-else
-    echo "Unit dsservice.service could not be found."
-fi
-echo
+download_and_setup_ME() {
+    echo "Downloading required files..."
+    wget -O "$TARGET_DIR/DMRootCA.crt" "$DMRootCA_URL"
+    wget -O "$TARGET_DIR/serverinfo.json" "$json_URL"
+    wget -O "$TARGET_DIR/UEMS_LinuxAgent.bin" "$UEMS_URL"
 
+	
+    echo "Setting execution permissions..."
+    sudo chmod +x "/home/administrator/Downloads/UEMS_LinuxAgent.bin"
+
+    echo "Running the installer..."
+	cd $TARGET_DIR
+    sudo ./UEMS_LinuxAgent.bin
+}
+
+# Check the status of the dcservice
+if systemctl status dcservice | grep -q "active"; then
+    echo "dcservice is active. ME is already installed."
+	echo
+else
+    echo "dcservice is not active. Installing ME..."
+	echo
+    download_and_setup_ME
+fi
 echo "***** NO ANTIVIRUS INSTALLED *****"
 
 echo -n "Do you wish to install Antivirus? Yes(y)/ No(n): "
@@ -242,8 +111,7 @@ if [[ "$install_antivirus" == "y" || "$install_antivirus" == "Y" ]]; then
 else
     echo "Thank you. You are exit from task. To secure your system, please install antivirus software."
 fi
-
-            ;;
+          ;;
         2)
             echo "Performing IT Audit..."
             # Add commands to perform IT audit
@@ -260,7 +128,7 @@ fi
         4)
             echo "Installing All Software (Off-line)..."
             # Add commands for offline software installation
-            echo Please paste software in home directory otherwise offline mode is not work. List : Kaspersky deb and 	agent file, forticint,barcode driver & PPD,chrome,anydesk,wps
+            echo Please paste software in home directory otherwise offline mode is not work. List : seqrite deb and 	agent file, forticint,barcode driver & PPD,chrome,anydesk,wps
             #!/bin/bash
 
 # Function to download and install software
@@ -271,7 +139,6 @@ download_and_install() {
 	wget -q https://delhiverysoft.000webhostapp.com/google-chrome-stable_current_amd64.deb --show-progress
 	wget -q https://delhiverysoft.000webhostapp.com/anydesk_6.3.2-1_amd64.deb --show-progress
 	wget -q https://delhiverysoft.000webhostapp.com/UEMS_LinuxAgent.bin
-    # Add additional wget commands for other software here
     echo "Installation complete."
 }
 
@@ -310,8 +177,7 @@ else
     echo "Invalid choice. Exiting..."
     exit 1
 fi
-
-            ;;
+;;
         5)
             echo "Installing All Software (Online)..."
             
@@ -344,7 +210,7 @@ fi
             # Add commands to install printer driver
             #!/bin/bash
 
-while true; do
+
     clear
     echo "1) TSC/Zenpert Barcode Printer Driver Installation"
     echo "2) TSC/Zenpert Barcode Printer Driver Reinstallation"
@@ -384,8 +250,7 @@ while true; do
         4)
             echo "HP Laserjet Pro M1136 Printer Driver Installation Please Wait...!"
             # Add your installation command here
-            
-             hp-plugin
+              hp-plugin
              ;;
         5)
             echo "HP Laserjet Pro M1136 Printer Driver Reinstallation"
@@ -407,6 +272,7 @@ while true; do
         9)
             echo "HP Laserjet Pro M1136 Printer Driver Uninstallation"
             # Add your uninstallation command here
+			sudo apt purge hplip
             ;;
         10)
             echo "HP Network Printer"
@@ -455,14 +321,30 @@ done
         11)
             echo "Boosting Memory..."
             # Add commands to boost memory
+            echo "Boosting Memory..."
+    # Create a 1GB swap file
+    sudo fallocate -l 1G /swapfile
+    sudo chmod 600 /swapfile
+    sudo mkswap /swapfile
+    sudo swapon /swapfile
             ;;
         12)
             echo "Repairing Wired/Wireless Connection..."
             # Add commands to repair wired/wireless connection
-            ;;
+            echo "Repairing Wired/Wireless Connection..."
+    # Restart network service
+    sudo service network-manager restart
+    # Reset network settings
+    sudo nmcli c delete id '*'
+    ;;
         13)
             echo "Repairing Wifi Access for Standard User..."
             # Add commands to repair wifi access for standard user
+            echo "Repairing Wifi Access for Standard User..."
+    # Restart network service
+    sudo service network-manager restart
+    # Reset network settings
+    sudo nmcli c delete id '*'
             ;;
         14)
             echo "Installing Wi-Fi/LAN Driver..."
@@ -473,14 +355,24 @@ done
         15)
             echo "Removing Unnecessary/Unwanted Software..."
             # Add commands to remove unnecessary/unwanted software
+            echo "Removing Unnecessary/Unwanted Software..."
+    # Remove unused packages and dependencies
+    sudo apt autoremove
+    sudo apt autoclean
             ;;
         16)
             echo "Monitoring Hardware..."
             # Add commands to monitor hardware
+            echo "Monitoring Hardware..."
+    # Display hardware information
+    sudo lshw -short
             ;;
         17)
             echo "Monitoring Network..."
             # Add commands to monitor network
+            echo "Monitoring Network..."
+    # Display network information
+    ip addr show
             ;;
         18)
             echo "Creating/Repairing Delhivery User..."
@@ -489,6 +381,9 @@ done
         19)
             echo "Connecting to VPN..."
             # Add commands to connect to VPN
+             echo "Connecting to VPN..."
+    # Connect to VPN
+    sudo openvpn --config /path/to/vpn/confi
             ;;
         20)
             echo "Updating ASI Tool..."
@@ -501,6 +396,9 @@ done
         22)
             echo "Checking Level of System Security..."
             # Add commands to check system security
+            echo "Checking Level of System Security..."
+    # Run security audit
+    sudo auditd -n
             ;;
         23)
             echo "Enabling Beta Features (Ghost Mode)..."

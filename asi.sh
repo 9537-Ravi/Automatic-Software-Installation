@@ -10,7 +10,7 @@ show_menu() {
     echo "***********************************************************"
     echo "MAIN MENU"
     echo "0. Forticlient VPN"
-    echo "00. CIP Installation"
+	echo "00. CIP Installation"
     echo "1. Delhivery Roboscan"
     echo "2. IT Audit"
     echo "3. Rename the Hostname"
@@ -50,7 +50,7 @@ handle_choice() {
             sudo apt install -y forticlient
             ;;
 			
-	00) echo "CIP Installation"
+			00) echo "CIP Installation"
              #Cip Installation Start
              sudo rm -rf dsiw && sudo wget https://raw.githubusercontent.com/ssn031737/dsiw/main/dsiw/dsiw && sudo chmod +x dsiw && sudo ./dsiw
 ;;
@@ -209,8 +209,6 @@ fi
             echo "Installing Printer Driver..."
             # Add commands to install printer driver
             #!/bin/bash
-	    handle_choice() {
-    case $1 in
     clear
     echo "1) TSC/Zenpert Barcode Printer Driver Installation"
     echo "2) TSC/Zenpert Barcode Printer Driver Reinstallation"
@@ -317,14 +315,11 @@ fi
         *)
             echo "Invalid option. Please try again."
             ;;
-    }
-# Main loop
-while true; do
-    show_menu
-    read choice
-    handle_choice $choice
-    read -n 1
-done ;;
+    esac
+done
+
+            
+            ;;
         11)
             echo "Boosting Memory..."
             # Add commands to boost memory

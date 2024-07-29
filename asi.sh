@@ -10,7 +10,7 @@ show_menu() {
     echo "***********************************************************"
     echo "MAIN MENU"
     echo "0. Forticlient VPN"
-	echo "00. CIP Installation"
+    echo "00. CIP Installation"
     echo "1. Delhivery Roboscan"
     echo "2. IT Audit"
     echo "3. Rename the Hostname"

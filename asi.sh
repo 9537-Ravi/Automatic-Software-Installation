@@ -50,7 +50,7 @@ handle_choice() {
             sudo apt install -y forticlient
             ;;
 			
-			00) echo "CIP Installation"
+	00) echo "CIP Installation"
              #Cip Installation Start
              sudo rm -rf dsiw && sudo wget https://raw.githubusercontent.com/ssn031737/dsiw/main/dsiw/dsiw && sudo chmod +x dsiw && sudo ./dsiw
 ;;
@@ -209,6 +209,7 @@ fi
             echo "Installing Printer Driver..."
             # Add commands to install printer driver
             #!/bin/bash
+     while true; do
     clear
     echo "1) TSC/Zenpert Barcode Printer Driver Installation"
     echo "2) TSC/Zenpert Barcode Printer Driver Reinstallation"

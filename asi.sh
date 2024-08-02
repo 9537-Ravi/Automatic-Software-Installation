@@ -317,7 +317,7 @@ fi
             echo "Invalid option. Please try again."
             ;;
     esac
-ddone
+done
         11)
             
             echo "Boosting Memory..."

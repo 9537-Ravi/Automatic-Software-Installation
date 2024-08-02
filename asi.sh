@@ -318,6 +318,7 @@ fi
             ;;
     esac
 done
+11)
       echo "Boosting Memory"
     # Create a 1GB swap file
      sudo fallocate -l 1G /swapfile
@@ -332,7 +333,7 @@ done
     # Restart network service
     sudo service network-manager restart
     # Reset network settings
-    sudo nmcli c delete id
+    sudo nmcli c delete id'*'
     ;;
         13)
             echo "Repairing Wifi Access for Standard User..."

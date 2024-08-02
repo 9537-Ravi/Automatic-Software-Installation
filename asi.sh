@@ -317,9 +317,6 @@ fi
             echo "Invalid option. Please try again."
             ;;
     esac
-
-            
-            ;;
         11)
             echo "Boosting Memory..."
             # Add commands to boost memory

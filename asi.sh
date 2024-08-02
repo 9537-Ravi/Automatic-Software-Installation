@@ -1,3 +1,4 @@
+#!/bin/bash
 # Function to display the main menu
 show_menu() {
     clear

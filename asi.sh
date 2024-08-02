@@ -319,14 +319,12 @@ fi
     esac
 done
         11)
-            
-            echo "Boosting Memory..."
-            # Add commands to boost memory
+      echo "Boosting Memory"
     # Create a 1GB swap file
-    sudo fallocate -l 1G /swapfile
-    sudo chmod 600 /swapfile
-    sudo mkswap /swapfile
-    sudo swapon /swapfile
+     sudo fallocate -l 1G /swapfile
+     sudo chmod 600 /swapfile
+     sudo mkswap /swapfile
+     sudo swapon /swapfile
             ;;
         12)
             echo "Repairing Wired/Wireless Connection..."

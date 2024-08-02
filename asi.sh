@@ -326,7 +326,15 @@ done
      sudo mkswap /swapfile
      sudo swapon /swapfile
             ;;
-        
+	    12)
+            echo "Repairing Wired/Wireless Connection..."
+            # Add commands to repair wired/wireless connection
+            echo "Repairing Wired/Wireless Connection..."
+    # Restart network service
+    sudo service network-manager restart
+    # Reset network settings
+    sudo nmcli c delete id'*'
+    ;;  
         13)
             echo "Repairing Wifi Access for Standard User..."
             # Add commands to repair wifi access for standard user

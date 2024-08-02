@@ -318,7 +318,6 @@ fi
             ;;
     esac
         11)
-            echo "Boosting Memory..."
             # Add commands to boost memory
             echo "Boosting Memory..."
     # Create a 1GB swap file

@@ -333,7 +333,7 @@ done
     # Restart network service
     sudo service network-manager restart
     # Reset network settings
-    sudo nmcli c delete id '*'
+    sudo nmcli c delete id
     ;;
         13)
             echo "Repairing Wifi Access for Standard User..."

@@ -208,7 +208,6 @@ fi
         10)
             echo "Installing Printer Driver..."
             # Add commands to install printer driver
-            #!/bin/bash
      while true; do
     clear
     echo "1) TSC/Zenpert Barcode Printer Driver Installation"
@@ -318,7 +317,7 @@ fi
             ;;
     esac
         11)
-            echo "Boosting Memory..."
+            echo "Boosting Memory"
 	    # Add commands to boost memory
     # Create a 1GB swap file
     sudo fallocate -l 1G /swapfile

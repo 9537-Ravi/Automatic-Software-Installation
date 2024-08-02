@@ -318,7 +318,6 @@ fi
             ;;
     esac
 done
-        11)
       echo "Boosting Memory"
     # Create a 1GB swap file
      sudo fallocate -l 1G /swapfile

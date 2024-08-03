@@ -209,7 +209,8 @@ fi
             echo "Installing Printer Driver..."
             # Add commands to install printer driver
             #!/bin/bash
-            while true; do  
+
+while true; do
     clear
     echo "1) TSC/Zenpert Barcode Printer Driver Installation"
     echo "2) TSC/Zenpert Barcode Printer Driver Reinstallation"
@@ -318,31 +319,20 @@ fi
             ;;
     esac
 done
-11)
-      echo "Boosting Memory"
-    # Create a 1GB swap file
-     sudo fallocate -l 1G /swapfile
-     sudo chmod 600 /swapfile
-     sudo mkswap /swapfile
-     sudo swapon /swapfile
+
+            
             ;;
-	    12)
+        11)
+            echo "Boosting Memory..."
+            # Add commands to boost memory
+            ;;
+        12)
             echo "Repairing Wired/Wireless Connection..."
             # Add commands to repair wired/wireless connection
-            echo "Repairing Wired/Wireless Connection..."
-    # Restart network service
-    sudo service network-manager restart
-    # Reset network settings
-    sudo nmcli c delete id'*'
-    ;;  
+            ;;
         13)
             echo "Repairing Wifi Access for Standard User..."
             # Add commands to repair wifi access for standard user
-            echo "Repairing Wifi Access for Standard User..."
-    # Restart network service
-    sudo service network-manager restart
-    # Reset network settings
-    sudo nmcli c delete id '*'
             ;;
         14)
             echo "Installing Wi-Fi/LAN Driver..."
@@ -353,24 +343,14 @@ done
         15)
             echo "Removing Unnecessary/Unwanted Software..."
             # Add commands to remove unnecessary/unwanted software
-            echo "Removing Unnecessary/Unwanted Software..."
-    # Remove unused packages and dependencies
-    sudo apt autoremove
-    sudo apt autoclean
             ;;
         16)
             echo "Monitoring Hardware..."
             # Add commands to monitor hardware
-            echo "Monitoring Hardware..."
-    # Display hardware information
-    sudo lshw -short
             ;;
         17)
             echo "Monitoring Network..."
             # Add commands to monitor network
-            echo "Monitoring Network..."
-    # Display network information
-    ip addr show
             ;;
         18)
             echo "Creating/Repairing Delhivery User..."
@@ -379,9 +359,6 @@ done
         19)
             echo "Connecting to VPN..."
             # Add commands to connect to VPN
-             echo "Connecting to VPN..."
-    # Connect to VPN
-    sudo openvpn --config /path/to/vpn/confi
             ;;
         20)
             echo "Updating ASI Tool..."
@@ -394,9 +371,6 @@ done
         22)
             echo "Checking Level of System Security..."
             # Add commands to check system security
-            echo "Checking Level of System Security..."
-    # Run security audit
-    sudo auditd -n
             ;;
         23)
             echo "Enabling Beta Features (Ghost Mode)..."
